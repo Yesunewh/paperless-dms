@@ -236,7 +236,7 @@ def _parse_beat_schedule() -> dict:
 
 
 # NEVER RUN WITH DEBUG IN PRODUCTION.
-DEBUG = __get_boolean("PAPERLESS_DEBUG", "NO")
+DEBUG = __get_boolean("PAPERLESS_DEBUG", "YES")
 
 
 ###############################################################################
