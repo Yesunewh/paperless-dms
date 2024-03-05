@@ -1,21 +1,48 @@
 <pngx-page-header title="Dashboard" [subTitle]="subtitle" i18n-title>
-  <pngx-logo extra_classes="d-none d-md-block mt-n2 me-1" height="3.5rem"></pngx-logo>
+  <!-- <pngx-logo extra_classes="d-none d-md-block mt-n2 me-1" height="3.5rem"></pngx-logo> -->
 </pngx-page-header>
  
-<div class="row">
-  <div class="col flex-col">
-    <pngx-statistics-widget></pngx-statistics-widget>
-  </div>
-  <div class="col-auto col-lg-4 col-xl-3 col-sidebar">
+<div class="row  "> 
+      <div class="col col-9  ">
+        <pngx-statistics-widget />
+        <div class="row d-flex  ">  
+          @for (d of list.documents; track trackByDocumentId($index, d)) {
    
-    <div class="row row-cols-1 g-4 mb-4 sticky-lg-top z-0">
-     
-      <div class="col">
-        <pngx-upload-file-widget></pngx-upload-file-widget>
-      </div>
+            <pngx-document-card-small class="p-0" [selected]="list.isSelected(d)" [document]="d" ></pngx-document-card-small>
+          }
+        </div>
+    </div>
+    <div class="col">
+      <pngx-upload-file-widget />
+
+    </div>
+
+    <!-- <div class="row bg-body-tertiary col">
+    <div class="col flex-col">
+   
+ 
+    <pngx-document-card-large />  
+  </div>
+    <div>
+      <h4 class="mt-5 " i18n>Resent Document</h4>
+    </div>
+    <div class="row">  
+      @for (d of list.documents; track trackByDocumentId($index, d)) {
+        <li>ss</li>{{stringifyObject(d)}}
+        <pngx-document-card-small class="p-0" [selected]="list.isSelected(d)" [document]="d" ></pngx-document-card-small>
+      }
     </div>
   </div>
-  <div class="col-12 col-lg-8 col-xl-9 mb-4">
+  
+  <div class="col col-auto col-lg-4 col-xl-3 col-sidebar"> 
+    <div class="row row-cols-1 g-4 mb-4 sticky-lg-top z-0">
+      <div class="col"> 
+      </div>
+    </div>
+  </div> -->
+
+  <div class="col-12 col-lg-8 col-xl-9 mb-4">  
+
     <div class="row row-cols-1 g-4" tourAnchor="tour.dashboard"
       cdkDropList
       [cdkDropListDisabled]="settingsService.globalDropzoneActive"
@@ -47,8 +74,7 @@
         }
       </ng-container>
     </div>
-  </div>
-  
-  
 
+  </div>
+   
 </div>

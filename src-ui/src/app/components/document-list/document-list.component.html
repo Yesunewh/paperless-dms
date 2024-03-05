@@ -1,6 +1,6 @@
 <pngx-page-header [title]="getTitle()">
 
-  <div ngbDropdown class="me-2 d-flex">
+  <!-- <div ngbDropdown class="me-2 d-flex">
     <button class="btn btn-sm btn-outline-primary" id="dropdownSelect" ngbDropdownToggle>
       <i-bs name="text-indent-left"></i-bs>
       <div class="d-none d-sm-inline">&nbsp;<ng-container i18n>Select</ng-container></div>
@@ -11,6 +11,7 @@
       <button ngbDropdownItem (click)="list.selectAll()" i18n>Select all</button>
     </div>
   </div>
+
   <div class="btn-group flex-fill" role="group">
     <input type="radio" class="btn-check" [(ngModel)]="displayMode" value="details" (ngModelChange)="saveDisplayMode()" id="displayModeDetails" name="displayModeDetails">
     <label for="displayModeDetails" class="btn btn-outline-primary btn-sm">
@@ -47,9 +48,9 @@
         }
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="btn-group ms-2 flex-fill" *pngxIfPermissions="{ action: PermissionAction.View, type: PermissionType.SavedView }" ngbDropdown role="group">
+  <!-- <div class="btn-group ms-2 flex-fill" *pngxIfPermissions="{ action: PermissionAction.View, type: PermissionType.SavedView }" ngbDropdown role="group">
     <button class="btn btn-sm btn-outline-primary dropdown-toggle flex-fill" tourAnchor="tour.documents-views" ngbDropdownToggle>
       <ng-container i18n>Views</ng-container>
       @if (savedViewIsModified) {
@@ -75,7 +76,7 @@
       </div>
       <button ngbDropdownItem (click)="saveViewConfigAs()" *pngxIfPermissions="{ action: PermissionAction.Add, type: PermissionType.SavedView }" i18n>Save as...</button>
     </div>
-  </div>
+  </div> -->
 
 </pngx-page-header>
 

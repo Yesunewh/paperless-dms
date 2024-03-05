@@ -194,11 +194,11 @@ urlpatterns = [
     # login, logout
     path("accounts/", include("django.contrib.auth.urls")),
     # Root of the Frontend
-    re_path(
-        r".*",
-        login_required(ensure_csrf_cookie(IndexView.as_view())),
-        name="base",
-    ),
+    # re_path(
+    #     r".*",
+    #     login_required(ensure_csrf_cookie(IndexView.as_view())),
+    #     name="base",
+    # ),
 ]
 
 

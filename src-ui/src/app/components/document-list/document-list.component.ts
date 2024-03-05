@@ -53,7 +53,7 @@ export class DocumentListComponent
     private toastService: ToastService,
     private modalService: NgbModal,
     private consumerStatusService: ConsumerStatusService,
-    public openDocumentsService: OpenDocumentsService,
+    public  openDocumentsService: OpenDocumentsService,
     private settingsService: SettingsService
   ) {
     super()
@@ -130,42 +130,43 @@ export class DocumentListComponent
   }
 
   ngOnInit(): void {
+    
     if (localStorage.getItem('document-list:displayMode') != null) {
       this.displayMode = localStorage.getItem('document-list:displayMode')
     }
 
-    this.consumerStatusService
-      .onDocumentConsumptionFinished()
-      .pipe(takeUntil(this.unsubscribeNotifier))
-      .subscribe(() => {
-        this.list.reload()
-      })
+    // this.consumerStatusService
+    //   .onDocumentConsumptionFinished()
+    //   .pipe(takeUntil(this.unsubscribeNotifier))
+    //   .subscribe(() => {
+    //     this.list.reload()
+    //   })
 
-    this.route.paramMap
-      .pipe(
-        filter((params) => params.has('id')), // only on saved view e.g. /view/id
-        switchMap((params) => {
-          return this.savedViewService
-            .getCached(+params.get('id'))
-            .pipe(map((view) => ({ view })))
-        })
-      )
-      .pipe(takeUntil(this.unsubscribeNotifier))
-      .subscribe(({ view }) => {
-        if (!view) {
-          this.router.navigate(['404'], {
-            replaceUrl: true,
-          })
-          return
-        }
-        this.unmodifiedSavedView = view
-        this.list.activateSavedViewWithQueryParams(
-          view,
-          convertToParamMap(this.route.snapshot.queryParams)
-        )
-        this.list.reload()
-        this.unmodifiedFilterRules = view.filter_rules
-      })
+    // this.route.paramMap
+    //   .pipe(
+    //     filter((params) => params.has('id')), // only on saved view e.g. /view/id
+    //     switchMap((params) => {
+    //       return this.savedViewService
+    //         .getCached(+params.get('id'))
+    //         .pipe(map((view) => ({ view })))
+    //     })
+    //   )
+    //   .pipe(takeUntil(this.unsubscribeNotifier))
+    //   .subscribe(({ view }) => {
+    //     if (!view) {
+    //       this.router.navigate(['404'], {
+    //         replaceUrl: true,
+    //       })
+    //       return
+    //     }
+    //     this.unmodifiedSavedView = view
+    //     this.list.activateSavedViewWithQueryParams(
+    //       view,
+    //       convertToParamMap(this.route.snapshot.queryParams)
+    //     )
+    //     this.list.reload()
+    //     this.unmodifiedFilterRules = view.filter_rules
+    //   })
 
     this.route.queryParamMap
       .pipe(
