@@ -338,7 +338,7 @@ MIDDLEWARE = [
     "paperless.middleware.ApiVersionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware", 
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 # Optional to enable compression
@@ -458,12 +458,18 @@ CSRF_TRUSTED_ORIGINS = __get_list("PAPERLESS_CSRF_TRUSTED_ORIGINS")
 # We allow CORS from localhost:8000
 CORS_ALLOWED_ORIGINS = __get_list(
     "PAPERLESS_CORS_ALLOWED_HOSTS",
-    ["http://localhost:8000"],
+    [
+        "http://localhost:8000",
+        "https://paperclientapi.serveo.net",
+        "https://peper_clinet.serveo.net",
+    ],
 )
 
 if DEBUG:
     # Allow access from the angular development server during debugging
-    CORS_ALLOWED_ORIGINS.append("http://localhost:4200")
+    ALLOWED_HOSTS = ["*"]
+    CORS_ORIGIN_ALLOW_ALL = True
+    CORS_ALLOWED_ORIGINS.append("http://localhost:3000")
 
 ALLOWED_HOSTS = __get_list("PAPERLESS_ALLOWED_HOSTS", ["*"])
 
@@ -476,6 +482,9 @@ if _paperless_url:
 if ["*"] != ALLOWED_HOSTS:
     # always allow localhost. Necessary e.g. for healthcheck in docker.
     ALLOWED_HOSTS.append("localhost")
+    ALLOWED_HOSTS.append("https://paperclientapi.serveo.net")
+    ALLOWED_HOSTS.append("https://peper_clinet.serveo.net")
+
     if _paperless_url:
         ALLOWED_HOSTS.append(_paperless_uri.hostname)
 

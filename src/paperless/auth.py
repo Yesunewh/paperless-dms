@@ -31,8 +31,8 @@ class AngularApiAuthenticationOverride(authentication.BaseAuthentication):
     def authenticate(self, request):
         if (
             settings.DEBUG
-            and "Referer" in request.headers
             and request.headers["Referer"].startswith("http://localhost")
+            and "Referer" in request.headers
         ):
             user = User.objects.filter(is_staff=True).first()
             print(f"Auto-Login with user {user}")
